@@ -1,0 +1,35 @@
+[Unit]
+Description=QPL XFS project quota helper
+After=docker.service
+Requires=docker.service
+
+[Service]
+Type=simple
+User=root
+Group=root
+ExecStart=/usr/bin/python3 /opt/qpl/scripts/quota-helper.py
+Restart=on-failure
+RestartSec=2
+RuntimeDirectory=qpl-quota
+RuntimeDirectoryMode=0750
+StateDirectory=qpl-quota
+StateDirectoryMode=0700
+UMask=0077
+Environment=LC_ALL=C
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ProtectKernelTunables=true
+ProtectControlGroups=true
+NoNewPrivileges=true
+RestrictAddressFamilies=AF_UNIX
+RestrictRealtime=true
+LockPersonality=true
+MemoryMax=128M
+TasksMax=32
+CapabilityBoundingSet=CAP_SYS_ADMIN CAP_CHOWN CAP_DAC_OVERRIDE CAP_FOWNER
+AmbientCapabilities=CAP_SYS_ADMIN CAP_CHOWN CAP_DAC_OVERRIDE CAP_FOWNER
+ReadWritePaths=/var/lib/docker/volumes /var/lib/qpl-quota /run/qpl-quota
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,27 @@
+.env
+.venv/
+node_modules/
+frontend/dist/
+runtime/
+*.sqlite
+*.sqlite-shm
+*.sqlite-wal
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.coverage
+htmlcov/
+playwright-report/
+test-results/
+screenshots/
+videos/
+.DS_Store
+
+# Local credentials and machine configuration
+.env.*
+!.env.example
+*.pem
+*.key
+auth.json
